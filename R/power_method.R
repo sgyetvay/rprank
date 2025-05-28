@@ -10,7 +10,11 @@ power_method = function(g, tol = 1e-6, max_iter = 5e5) {
   
   #prepare matrix
   M = as_adjacency_matrix(g, attr = "N_workers", sparse = TRUE)
-  Sinv = solve(Diagonal(nrow(M), colSums(M)))
+  print(str(M))
+  print(dim(M))
+  print(class(M))
+  print(M[1:min(5,nrow(M)), 1:min(5,ncol(M))])  # print a small slice
+  Sinv = solve(Diagonal(nrow(M), Matrix::colSums(M)))
   SinvM = Sinv%*%M
   
   #initialize guess
